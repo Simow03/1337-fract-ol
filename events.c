@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 04:16:47 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/19 06:07:06 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/19 06:17:58 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	key_listener(int keycode, t_fractal *fractal)
 {
 	if (keycode == XK_Escape)
 		close_listener(fractal);
-	if (keycode == XK_Left)
-		fractal->shift_x += 0.2;
 	else if (keycode == XK_Right)
+		fractal->shift_x += 0.2;
+	if (keycode == XK_Left)
 		fractal->shift_x -= 0.2;
 	else if (keycode == XK_Up)
 		fractal->shift_y += 0.2;
