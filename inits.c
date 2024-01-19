@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:05:03 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/18 22:13:23 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/19 06:08:04 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,22 @@ static void	failed_malloc(void)
 {
 	perror("! FAILED MALLOC !");
 	exit(1);
+}
+
+void	values_init(t_fractal *fractal)
+{
+	fractal->shift_x = 0;
+	fractal->shift_y = 0;
+}
+
+static void	events_handle(t_fractal *fractal)
+{
+	mlx_hook(fractal->win_ptr,
+			2, 0, &key_listener, fractal);
+	// mlx_hook(fractal->win_ptr,
+	// 		5, 0, &mouse_listener, fractal);
+	mlx_hook(fractal->win_ptr,
+			17, 0, &close_listener, fractal);
 }
 
 void	init(t_fractal *fractal)
@@ -42,4 +58,6 @@ void	init(t_fractal *fractal)
 	fractal->image.addr = mlx_get_data_addr(fractal->image.img,
 			&fractal->image.bits_per_pixel,
 			&fractal->image.line_length, &fractal->image.endian);
+	values_init(fractal);
+	events_handle(fractal);
 }

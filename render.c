@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 04:25:04 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/18 23:49:19 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/19 05:37:53 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	my_mlx_pixel_put(int x, int y, t_img *image, int color)
 	*(unsigned int *)dst = color;
 }
 
-static void	handle_pixel(int x, int y, t_fractal *fractal)
+static void	pixel_handle(int x, int y, t_fractal *fractal)
 {
 	int			color;
 	int			i;
@@ -30,8 +30,8 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 
 	z.re = 0;
 	z.im = 0;
-	c.re = scale(x, -2, +2, WIDTH);
-	c.im = scale(y, +2, -2, HEIGHT);
+	c.re = scale(x, -2, +2, WIDTH) + fractal->shift_x;
+	c.im = scale(y, +2, -2, HEIGHT) + fractal->shift_y;
 	i = 0;
 	while (i++ < NUM_OF_ITERS)
 	{
@@ -56,7 +56,7 @@ void	render(t_fractal *fractal)
 	{
 		x = -1;
 		while (++x < WIDTH)
-			handle_pixel(x, y, fractal);
+			pixel_handle(x, y, fractal);
 	}
 	mlx_put_image_to_window(fractal->mlx_ptr,
 		fractal->win_ptr, fractal->image.img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:59:23 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/18 23:45:42 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/19 06:07:39 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_fractal
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	image;
+	double	shift_x;
+	double	shift_y;
 }		t_fractal;
 
 /* complex number */
@@ -62,6 +64,17 @@ typedef struct s_complex
 /* mlx inits */
 void		init(t_fractal *fractal);
 void		render(t_fractal *fractal);
+
+/* events */
+# define XK_Escape 53
+#define XK_Left 123
+#define XK_Right 124
+#define XK_Down 125
+#define XK_Up 126
+
+int			key_listener(int keycode, t_fractal *fractal);
+// int			mouse_listener(int button, int x, int y, t_fractal *fractal);
+int			close_listener(t_fractal *fractal);
 
 /* utils */
 int			ft_strncmp(char *s1, char *s2, int n);
