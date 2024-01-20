@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 04:16:47 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/19 06:17:58 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/20 06:53:33 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,37 @@
 
 int	key_listener(int keycode, t_fractal *fractal)
 {
-	if (keycode == XK_Escape)
+	if (keycode == XK_ESCAPE)
 		close_listener(fractal);
-	else if (keycode == XK_Right)
-		fractal->shift_x += 0.2;
-	if (keycode == XK_Left)
-		fractal->shift_x -= 0.2;
-	else if (keycode == XK_Up)
-		fractal->shift_y += 0.2;
-	else if (keycode == XK_Down)
-		fractal->shift_y -= 0.2;
+	else if (keycode == XK_RIGHT)
+		fractal->shift_x += (0.2 * fractal->zoom);
+	if (keycode == XK_LEFT)
+		fractal->shift_x -= (0.2 * fractal->zoom);
+	else if (keycode == XK_UP)
+		fractal->shift_y += (0.2 * fractal->zoom);
+	else if (keycode == XK_DOWN)
+		fractal->shift_y -= (0.2 * fractal->zoom);
+	else if (keycode == XK_MINUS)
+		fractal->zoom *= 1.1;
+	else if (keycode == XK_PLUS)
+		fractal->zoom *= 0.9;
 	render(fractal);
-	return 0;
+	return (0);
 }
 
-// int	mouse_listener(int button, int x, int y, t_fractal *fractal)
-// {
-	
-// }
+int	mouse_listener(int button, int x, int y, t_fractal *fractal)
+{
+	if (button == XK_POINTER_BUTTON5)
+	{
+		fractal->zoom *= 0.9;
+	}
+	else if (button == XK_POINTER_BUTTON4)
+	{
+		fractal->zoom /= 0.9;
+	}
+	render(fractal);
+	return (0);
+}
 
 int	close_listener(t_fractal *fractal)
 {

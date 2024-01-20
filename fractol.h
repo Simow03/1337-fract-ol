@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:59:23 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/19 06:07:39 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/20 07:52:13 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 # define GREEN_DARK 0x006400
-# define GREEN_MEDIUM 0x00FF00
 # define GREEN_BRIGHT 0xADFF2F
+# define FIRE_LOW 0xFF4500
+# define BROWN_DARK 0x401102
+# define GOLD_YELLOW  0xFFD700
 
 /* image comps */
 typedef struct s_img
@@ -52,6 +54,7 @@ typedef struct s_fractal
 	t_img	image;
 	double	shift_x;
 	double	shift_y;
+	double	zoom;
 }		t_fractal;
 
 /* complex number */
@@ -66,14 +69,18 @@ void		init(t_fractal *fractal);
 void		render(t_fractal *fractal);
 
 /* events */
-# define XK_Escape 53
-#define XK_Left 123
-#define XK_Right 124
-#define XK_Down 125
-#define XK_Up 126
+# define XK_ESCAPE 53
+# define XK_LEFT 123
+# define XK_RIGHT 124
+# define XK_DOWN 125
+# define XK_UP 126
+# define XK_PLUS 69
+# define XK_MINUS 78
+# define XK_POINTER_BUTTON4 4
+# define XK_POINTER_BUTTON5 5
 
 int			key_listener(int keycode, t_fractal *fractal);
-// int			mouse_listener(int button, int x, int y, t_fractal *fractal);
+int			mouse_listener(int button, int x, int y, t_fractal *fractal);
 int			close_listener(t_fractal *fractal);
 
 /* utils */
