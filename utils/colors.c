@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 00:45:38 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 00:48:08 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 00:54:08 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int	color_generator(int color1, int color2, int i, int nums_of_iters)
 int	switch_colors(int i, t_color *color)
 {
 	if (color->current == 1)
-		return (color_generator(GREEN_BRIGHT, GREEN_DARK, i, NUM_OF_ITERS));
-	else if (color->current == 2)
-		return (color_generator(FIRE_LOW, BLACK, i, NUM_OF_ITERS));
-	else if (color->current == 3)
-		return (color_generator(WHITE, WHITE, i, NUM_OF_ITERS));
-	else if (color->current == 4)
-		return (color_generator(GOLD_YELLOW, BROWN_DARK, i, NUM_OF_ITERS));
-	else if (color->current == 5)
 		return (color_generator(YELLOW_BRIGHT, DARK_BLUE, i, NUM_OF_ITERS));
-	else if (color->current == 6)
+	else if (color->current == 2)
 		return (color_generator(PSY_PURPLE, ORANGE_BRIGHT, i, NUM_OF_ITERS));
+	else if (color->current == 3)
+		return (color_generator(GREEN_BRIGHT, GREEN_DARK, i, NUM_OF_ITERS));
+	else if (color->current == 4)
+		return (color_generator(FIRE_LOW, BLACK, i, NUM_OF_ITERS));
+	else if (color->current == 5)
+		return (color_generator(WHITE, WHITE, i, NUM_OF_ITERS));
+	else if (color->current == 6)
+		return (color_generator(GOLD_YELLOW, BROWN_DARK, i, NUM_OF_ITERS));
 	else
 	{
 		color->current = 1;
