@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:59:23 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/20 07:52:13 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 00:47:56 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 # define HEIGHT 800
 
 /* colors */
+typedef struct s_color
+{
+	int current;
+}		t_color;
+
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 # define GREEN_DARK 0x006400
@@ -31,6 +36,10 @@
 # define FIRE_LOW 0xFF4500
 # define BROWN_DARK 0x401102
 # define GOLD_YELLOW  0xFFD700
+# define ORANGE_BRIGHT 0xDC7000
+#define PSY_PURPLE 0x6415C8
+# define DARK_BLUE 0x08087B
+# define YELLOW_BRIGHT 0xFAEE09
 
 /* image comps */
 typedef struct s_img
@@ -42,6 +51,7 @@ typedef struct s_img
 	int		endian;
 }		t_img;
 
+
 /* fractal def */
 # define ESCAPE_VALUE 4
 # define NUM_OF_ITERS 100
@@ -52,6 +62,7 @@ typedef struct s_fractal
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	image;
+	t_color color;
 	double	shift_x;
 	double	shift_y;
 	double	zoom;
@@ -74,10 +85,9 @@ void		render(t_fractal *fractal);
 # define XK_RIGHT 124
 # define XK_DOWN 125
 # define XK_UP 126
-# define XK_PLUS 69
-# define XK_MINUS 78
 # define XK_POINTER_BUTTON4 4
 # define XK_POINTER_BUTTON5 5
+# define XK_SPACE 49
 
 int			key_listener(int keycode, t_fractal *fractal);
 int			mouse_listener(int button, int x, int y, t_fractal *fractal);
@@ -89,5 +99,7 @@ void		ft_putstr_fd(char *s, int fd);
 double		scale(double unscaled, double min, double max, double MAX);
 t_complex	sum_complex(t_complex C1, t_complex C2);
 t_complex	power_complex(t_complex C);
+int			switch_colors(int i, t_color *color);
+int			color_generator(int color1, int color2, int i, int nums_of_iters);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 04:16:47 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/20 06:53:33 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 00:35:13 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ int	key_listener(int keycode, t_fractal *fractal)
 		fractal->shift_y += (0.2 * fractal->zoom);
 	else if (keycode == XK_DOWN)
 		fractal->shift_y -= (0.2 * fractal->zoom);
-	else if (keycode == XK_MINUS)
-		fractal->zoom *= 1.1;
-	else if (keycode == XK_PLUS)
-		fractal->zoom *= 0.9;
+	else if (keycode == XK_SPACE)
+		fractal->color.current += 1;
 	render(fractal);
 	return (0);
 }

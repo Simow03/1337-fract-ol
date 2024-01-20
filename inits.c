@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:05:03 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/20 04:02:23 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 00:34:51 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	values_init(t_fractal *fractal)
 	fractal->shift_x = 0;
 	fractal->shift_y = 0;
 	fractal->zoom = 1;
+	fractal->color.current = 1;
 }
 
 static void	events_handle(t_fractal *fractal)

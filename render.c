@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 04:25:04 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/20 07:54:03 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 00:46:06 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@ void	my_mlx_pixel_put(int x, int y, t_img *image, int color)
 	dst = image->addr + (y * image->line_length
 			+ x * (image->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-int	smooth_color(int color1, int color2, int i, int nums_of_iters)
-{
-    double smooth_factor;
-
-    smooth_factor = pow((double)i / nums_of_iters, 0.5);
-
-    int r = (int)((color1 >> 16 & 0xFF) * smooth_factor + (color2 >> 16 & 0xFF) * (1 - smooth_factor));
-    int g = (int)((color1 >> 8 & 0xFF) * smooth_factor + (color2 >> 8 & 0xFF) * (1 - smooth_factor));
-    int b = (int)((color1 & 0xFF) * smooth_factor + (color2 & 0xFF) * (1 - smooth_factor));
-    return ((r << 16) | (g << 8) | b);
 }
 
 static void	pixel_handle(int x, int y, t_fractal *fractal)
@@ -50,7 +38,7 @@ static void	pixel_handle(int x, int y, t_fractal *fractal)
 		z = sum_complex(power_complex(z), c);
 		if (pow(z.re, 2) + pow(z.im, 2) > ESCAPE_VALUE)
 		{
-			color = smooth_color(GOLD_YELLOW, BROWN_DARK, i, NUM_OF_ITERS);
+			color = switch_colors(i, &fractal->color);
 			my_mlx_pixel_put(x, y, &fractal->image, color);
 			return ;
 		}
