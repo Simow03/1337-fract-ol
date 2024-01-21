@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:59:23 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 07:36:57 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 07:52:52 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 /* colors */
 typedef struct s_color
 {
-	int current;
+	int	current;
 }		t_color;
 
 # define BLACK 0x000000
@@ -37,7 +37,7 @@ typedef struct s_color
 # define BROWN_DARK 0x401102
 # define GOLD_YELLOW  0xFFD700
 # define PURPLE_DARK 0x00000C
-#define PSY_PURPLE 0x6415C8
+# define PSY_PURPLE 0x6415C8
 # define DARK_BLUE 0x08087B
 # define YELLOW_BRIGHT 0xFAEE09
 
@@ -51,10 +51,9 @@ typedef struct s_img
 	int		endian;
 }		t_img;
 
-
 /* fractal def */
 # define ESCAPE_VALUE 4
-# define NUM_OF_ITERS 100
+# define NUM_OF_ITERS 130
 
 typedef struct s_fractal
 {
@@ -62,7 +61,7 @@ typedef struct s_fractal
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	image;
-	t_color color;
+	t_color	color;
 	double	shift_x;
 	double	shift_y;
 	double	zoom;

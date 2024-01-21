@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 00:45:38 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 01:55:21 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 07:55:56 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 int	color_generator(int color1, int color2, int i, int nums_of_iters)
 {
 	double	smooth_factor;
+	int		r;
+	int		g;
+	int		b;
 
 	smooth_factor = pow((double)i / nums_of_iters, 0.5);
-
-	int r = (int)((color1 >> 16 & 0xFF) * smooth_factor + (color2 >> 16 & 0xFF) * (1 - smooth_factor));
-	int g = (int)((color1 >> 8 & 0xFF) * smooth_factor + (color2 >> 8 & 0xFF) * (1 - smooth_factor));
-	int b = (int)((color1 & 0xFF) * smooth_factor + (color2 & 0xFF) * (1 - smooth_factor));
+	r = (int)((color1 >> 16 & 0xFF) * smooth_factor
+			+ (color2 >> 16 & 0xFF) * (1 - smooth_factor));
+	g = (int)((color1 >> 8 & 0xFF) * smooth_factor
+			+ (color2 >> 8 & 0xFF) * (1 - smooth_factor));
+	b = (int)((color1 & 0xFF) * smooth_factor
+			+ (color2 & 0xFF) * (1 - smooth_factor));
 	return ((r << 16) | (g << 8) | b);
 }
 

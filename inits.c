@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:05:03 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 07:30:34 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 07:53:37 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ int	julia(int x, int y, t_fractal *fractal)
 {
 	if (!ft_strncmp(fractal->name, "julia", 5))
 	{
-		fractal->julia_x = (scale(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
-		fractal->julia_y = (scale(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+		fractal->julia_x = (scale(x, -2, +2, WIDTH)
+				* fractal->zoom) + fractal->shift_x;
+		fractal->julia_y = (scale(y, +2, -2, HEIGHT)
+				* fractal->zoom) + fractal->shift_y;
 		render(fractal);
 	}
 	return (0);
