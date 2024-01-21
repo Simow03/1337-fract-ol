@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 04:25:04 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 00:46:06 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 07:40:37 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,27 @@ static void	pixel_handle(int x, int y, t_fractal *fractal)
 	t_complex	z;
 	t_complex	c;
 
-	z.re = 0;
-	z.im = 0;
-	c.re = (scale(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
-	c.im = (scale(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+	if (!ft_strncmp(fractal->name, "julia", 5))
+	{
+		z.re = (scale(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
+		z.im = (scale(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+		c.re = fractal->julia_x;
+		c.im = fractal->julia_y;
+	}
+	else
+	{
+		c.re = (scale(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
+		c.im = (scale(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+		z.re = 0;
+		z.im = 0;
+	}
 	i = 0;
 	while (i++ < NUM_OF_ITERS)
 	{
-		z = sum_complex(power_complex(z), c);
+		if (!ft_strncmp(fractal->name, "burning_ship", 12))
+			z = substract_imaginary(fabs_imaginary(z), c);
+		else
+			z = sum_complex(power_complex(z), c);
 		if (pow(z.re, 2) + pow(z.im, 2) > ESCAPE_VALUE)
 		{
 			color = switch_colors(i, &fractal->color);

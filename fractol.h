@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:59:23 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 02:05:46 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 07:36:57 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include "mlx.h"
 
 /* window */
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 500
+# define HEIGHT 500
 
 /* colors */
 typedef struct s_color
@@ -54,7 +54,7 @@ typedef struct s_img
 
 /* fractal def */
 # define ESCAPE_VALUE 4
-# define NUM_OF_ITERS 300
+# define NUM_OF_ITERS 100
 
 typedef struct s_fractal
 {
@@ -66,6 +66,8 @@ typedef struct s_fractal
 	double	shift_x;
 	double	shift_y;
 	double	zoom;
+	double	julia_x;
+	double	julia_y;
 }		t_fractal;
 
 /* complex number */
@@ -99,6 +101,8 @@ void		ft_putstr_fd(char *s, int fd);
 double		scale(double unscaled, double min, double max, double MAX);
 t_complex	sum_complex(t_complex C1, t_complex C2);
 t_complex	power_complex(t_complex C);
+t_complex	substract_imaginary(t_complex c1, t_complex c2);
+t_complex	fabs_imaginary(t_complex c);
 int			switch_colors(int i, t_color *color);
 int			color_generator(int color1, int color2, int i, int nums_of_iters);
 
