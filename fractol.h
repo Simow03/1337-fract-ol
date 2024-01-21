@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:59:23 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 00:47:56 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/01/21 02:05:46 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ typedef struct s_color
 
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
-# define GREEN_DARK 0x006400
-# define GREEN_BRIGHT 0xADFF2F
+# define GREEN_DARK 0x003D00
+# define GREEN_BRIGHT 0xA1ffA1
 # define FIRE_LOW 0xFF4500
 # define BROWN_DARK 0x401102
 # define GOLD_YELLOW  0xFFD700
-# define ORANGE_BRIGHT 0xDC7000
+# define PURPLE_DARK 0x00000C
 #define PSY_PURPLE 0x6415C8
 # define DARK_BLUE 0x08087B
 # define YELLOW_BRIGHT 0xFAEE09
@@ -54,7 +54,7 @@ typedef struct s_img
 
 /* fractal def */
 # define ESCAPE_VALUE 4
-# define NUM_OF_ITERS 100
+# define NUM_OF_ITERS 300
 
 typedef struct s_fractal
 {
