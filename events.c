@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 04:16:47 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 06:53:23 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/07 20:14:46 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,15 @@ int	mouse_listener(int button, int x, int y, t_fractal *fractal)
 {
 	if (button == XK_POINTER_BUTTON5)
 	{
-		fractal->zoom *= 0.9;
+		fractal->zoom *= 1.1;
+		fractal->shift_x += (scale(x, +2, -2, WIDTH) - fractal->shift_x) * 0.1 / fractal->zoom;
+		fractal->shift_y += (scale(y, -2, +2, HEIGHT) - fractal->shift_y) * 0.1 / fractal->zoom;
 	}
 	else if (button == XK_POINTER_BUTTON4)
 	{
-		fractal->zoom /= 0.9;
+		fractal->zoom /= 1.1;
+		fractal->shift_x += (scale(x, +2, -2, WIDTH) - fractal->shift_x) * -0.1 / fractal->zoom;
+		fractal->shift_y += (scale(y, -2, +2, HEIGHT) - fractal->shift_y) * -0.1 / fractal->zoom;
 	}
 	render(fractal);
 	return (0);
@@ -48,6 +52,6 @@ int	close_listener(t_fractal *fractal)
 {
 	mlx_destroy_image(fractal->mlx_ptr, fractal->image.img);
 	mlx_destroy_window(fractal->mlx_ptr, fractal->win_ptr);
-	free(fractal->mlx_ptr);
+	fractal->mlx_ptr = NULL;
 	exit(0);
 }

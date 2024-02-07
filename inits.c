@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:05:03 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 07:53:37 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/06 18:20:46 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	failed_malloc(void)
 	exit(1);
 }
 
-void	values_init(t_fractal *fractal)
+static void	values_init(t_fractal *fractal)
 {
 	fractal->shift_x = 0;
 	fractal->shift_y = 0;
