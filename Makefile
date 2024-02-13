@@ -6,7 +6,7 @@
 #    By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 18:51:51 by mstaali           #+#    #+#              #
-#    Updated: 2024/02/07 19:36:12 by mstaali          ###   ########.fr        #
+#    Updated: 2024/02/12 20:24:36 by mstaali          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fractol
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Ofast
+CFLAGS = -Wall -Wextra -Werror -O3
 
 LDFLAGS = -lmlx -framework OpenGL -framework AppKit
 

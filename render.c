@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 04:25:04 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 07:40:37 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/13 20:18:27 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,32 @@ static void	pixel_handle(int x, int y, t_fractal *fractal)
 
 	if (!ft_strncmp(fractal->name, "julia", 5))
 	{
-		z.re = (scale(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
-		z.im = (scale(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+		z.re = (scale(x, fractal->start_x, fractal->end_x, WIDTH));
+		z.im = (scale(y, fractal->start_y, fractal->end_y, HEIGHT));
 		c.re = fractal->julia_x;
 		c.im = fractal->julia_y;
 	}
 	else
 	{
-		c.re = (scale(x, -2, +2, WIDTH) * fractal->zoom) + fractal->shift_x;
-		c.im = (scale(y, +2, -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
+		c.re = (scale(x, fractal->start_x, fractal->end_x, WIDTH));
+		c.im = (scale(y, fractal->start_y, fractal->end_y, HEIGHT));
 		z.re = 0;
 		z.im = 0;
 	}
 	i = 0;
-	while (i++ < NUM_OF_ITERS)
+	while (i++ < fractal->iterations)
 	{
 		if (!ft_strncmp(fractal->name, "burning_ship", 12))
-			z = substract_imaginary(fabs_imaginary(z), c);
+			z = sum_complex(fabs_imaginary(z), c);
 		else
 			z = sum_complex(power_complex(z), c);
-		if (pow(z.re, 2) + pow(z.im, 2) > ESCAPE_VALUE)
+		if (pow(z.re, 2) + pow(z.im, 2) > 4)
 		{
-			color = switch_colors(i, &fractal->color);
+			color = color_generator(i, fractal);
 			my_mlx_pixel_put(x, y, &fractal->image, color);
 			return ;
 		}
-		my_mlx_pixel_put(x, y, &fractal->image, BLACK);
+		my_mlx_pixel_put(x, y, &fractal->image, 0x000000);
 	}
 }
 

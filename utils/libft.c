@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 19:52:38 by mstaali           #+#    #+#             */
-/*   Updated: 2024/01/21 01:11:00 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/12 19:11:20 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,32 @@ void	ft_putstr_fd(char *s, int fd)
 		return ;
 	while (*s++)
 		write(fd, s, 1);
+}
+
+double	ft_atodouble(char *s)
+{
+	int		integer;
+	double	fractional;
+	double	pow;
+	int		sign;
+
+	integer = 0;
+	fractional = 0;
+	sign = 1;
+	pow = 1;
+	while (*s == '\t' || *s == ' ')
+		++s;
+	while (*s == '+' || *s == '-')
+		if (*s++ == '-')
+			sign = (-1);
+	while (*s != '.' && *s)
+		integer = (integer * 10) + (*s++ - '0');
+	if (*s == '.')
+		++s;
+	while (*s)
+	{
+		pow /= 10;
+		fractional = fractional + (*s++ - '0') * pow;
+	}
+	return ((integer + fractional) * sign);
 }
