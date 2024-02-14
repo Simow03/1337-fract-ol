@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:59:23 by mstaali           #+#    #+#             */
-/*   Updated: 2024/02/12 20:37:49 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/14 17:56:32 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,31 @@ typedef struct s_img
 	int		endian;
 }		t_img;
 
-typedef struct s_fractal
-{
-	char	*name;
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	image;
-	int		color;
-	double	start_x;
-	double	end_x;
-	double	start_y;
-	double	end_y;
-	double	move_factor;
-	double	zoom_factor;
-	double	julia_x;
-	double	julia_y;
-	int		iterations;
-}		t_fractal;
-
-/* complex number */
 typedef struct s_complex
 {
 	double	re;
 	double	im;
 }		t_complex;
+
+typedef struct s_fractal
+{
+	char		*name;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		image;
+	int			color;
+	double		start_x;
+	double		end_x;
+	double		start_y;
+	double		end_y;
+	double		move_factor;
+	double		zoom_factor;
+	double		julia_x;
+	double		julia_y;
+	int			iterations;
+	t_complex	c;
+	t_complex	z;
+}		t_fractal;
 
 /* mlx inits */
 void		init(t_fractal *fractal);

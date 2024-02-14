@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 04:25:04 by mstaali           #+#    #+#             */
-/*   Updated: 2024/02/13 20:18:27 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/14 17:59:08 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,38 @@ void	my_mlx_pixel_put(int x, int y, t_img *image, int color)
 	*(unsigned int *)dst = color;
 }
 
+static void	helper(t_fractal *fractal, int x, int y)
+{
+	if (!ft_strncmp(fractal->name, "julia", 5))
+	{
+		fractal->z.re = (scale(x, fractal->start_x, fractal->end_x, WIDTH));
+		fractal->z.im = (scale(y, fractal->start_y, fractal->end_y, HEIGHT));
+		fractal->c.re = fractal->julia_x;
+		fractal->c.im = fractal->julia_y;
+	}
+	else
+	{
+		fractal->c.re = (scale(x, fractal->start_x, fractal->end_x, WIDTH));
+		fractal->c.im = (scale(y, fractal->start_y, fractal->end_y, HEIGHT));
+		fractal->z.re = 0;
+		fractal->z.im = 0;
+	}
+}
+
 static void	pixel_handle(int x, int y, t_fractal *fractal)
 {
 	int			color;
 	int			i;
-	t_complex	z;
-	t_complex	c;
 
-	if (!ft_strncmp(fractal->name, "julia", 5))
-	{
-		z.re = (scale(x, fractal->start_x, fractal->end_x, WIDTH));
-		z.im = (scale(y, fractal->start_y, fractal->end_y, HEIGHT));
-		c.re = fractal->julia_x;
-		c.im = fractal->julia_y;
-	}
-	else
-	{
-		c.re = (scale(x, fractal->start_x, fractal->end_x, WIDTH));
-		c.im = (scale(y, fractal->start_y, fractal->end_y, HEIGHT));
-		z.re = 0;
-		z.im = 0;
-	}
+	helper(fractal, x, y);
 	i = 0;
 	while (i++ < fractal->iterations)
 	{
 		if (!ft_strncmp(fractal->name, "burning_ship", 12))
-			z = sum_complex(fabs_imaginary(z), c);
+			fractal->z = sum_complex(fabs_imaginary(fractal->z), fractal->c);
 		else
-			z = sum_complex(power_complex(z), c);
-		if (pow(z.re, 2) + pow(z.im, 2) > 4)
+			fractal->z = sum_complex(power_complex(fractal->z), fractal->c);
+		if (pow(fractal->z.re, 2) + pow(fractal->z.im, 2) > 4)
 		{
 			color = color_generator(i, fractal);
 			my_mlx_pixel_put(x, y, &fractal->image, color);
