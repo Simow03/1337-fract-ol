@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 04:25:04 by mstaali           #+#    #+#             */
-/*   Updated: 2024/02/14 17:59:08 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/14 18:13:14 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	my_mlx_pixel_put(int x, int y, t_img *image, int color)
 	*(unsigned int *)dst = color;
 }
 
-static void	helper(t_fractal *fractal, int x, int y)
+static void	which_fractal(int x, int y, t_fractal *fractal)
 {
 	if (!ft_strncmp(fractal->name, "julia", 5))
 	{
@@ -44,7 +44,7 @@ static void	pixel_handle(int x, int y, t_fractal *fractal)
 	int			color;
 	int			i;
 
-	helper(fractal, x, y);
+	which_fractal(x, y, fractal);
 	i = 0;
 	while (i++ < fractal->iterations)
 	{
