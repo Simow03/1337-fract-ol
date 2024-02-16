@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:59:23 by mstaali           #+#    #+#             */
-/*   Updated: 2024/02/15 18:15:59 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/16 18:54:18 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int			mouse_listener(int button, int x, int y, t_fractal *fractal);
 int			close_listener(t_fractal *fractal);
 
 /* utils */
+void		exit_fail(void);
 int			ft_strncmp(char *s1, char *s2, int n);
 void		ft_putstr_fd(char *s, int fd);
 double		ft_atodouble(char *s);

@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 19:52:38 by mstaali           #+#    #+#             */
-/*   Updated: 2024/02/12 19:11:20 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/16 19:06:18 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,32 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, s, 1);
 }
 
+static int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+static void	parse(char *s)
+{
+	while (*s)
+	{
+		if (*s == '+' || *s == '-')
+			s++;
+		if (*s == '+' || *s == '-')
+			exit_fail();
+		while (*s && ft_isdigit(*s))
+			s++;
+		if (*s == '.')
+			s++;
+		while (*s && ft_isdigit(*s))
+			s++;
+		if (*s && !ft_isdigit(*s))
+			exit_fail();
+	}
+}
+
 double	ft_atodouble(char *s)
 {
 	int		integer;
@@ -44,9 +70,7 @@ double	ft_atodouble(char *s)
 	fractional = 0;
 	sign = 1;
 	pow = 1;
-	while (*s == '\t' || *s == ' ')
-		++s;
-	while (*s == '+' || *s == '-')
+	parse(s);
 		if (*s++ == '-')
 			sign = (-1);
 	while (*s != '.' && *s)
