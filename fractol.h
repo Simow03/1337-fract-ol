@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:59:23 by mstaali           #+#    #+#             */
-/*   Updated: 2024/02/14 17:56:32 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/15 18:15:59 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_img
 	int		endian;
 }		t_img;
 
+/* Complex numbers */
 typedef struct s_complex
 {
 	double	re;

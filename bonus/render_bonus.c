@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 04:25:04 by mstaali           #+#    #+#             */
-/*   Updated: 2024/02/15 18:58:46 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:26:52 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../fractol.h"
 
 void	my_mlx_pixel_put(int x, int y, t_img *image, int color)
 {
@@ -48,7 +48,10 @@ static void	pixel_handle(int x, int y, t_fractal *fractal)
 	i = 0;
 	while (i++ < fractal->iterations)
 	{
-		fractal->z = sum_complex(power_complex(fractal->z), fractal->c);
+		if (!ft_strncmp(fractal->name, "burning_ship", 12))
+			fractal->z = sum_complex(fabs_imaginary(fractal->z), fractal->c);
+		else
+			fractal->z = sum_complex(power_complex(fractal->z), fractal->c);
 		if (pow(fractal->z.re, 2) + pow(fractal->z.im, 2) > 4)
 		{
 			color = color_generator(i, fractal);
