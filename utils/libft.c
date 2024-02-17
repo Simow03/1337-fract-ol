@@ -6,7 +6,7 @@
 /*   By: mstaali <mstaali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 19:52:38 by mstaali           #+#    #+#             */
-/*   Updated: 2024/02/16 19:06:18 by mstaali          ###   ########.fr       */
+/*   Updated: 2024/02/16 22:07:20 by mstaali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ double	ft_atodouble(char *s)
 	sign = 1;
 	pow = 1;
 	parse(s);
-		if (*s++ == '-')
-			sign = (-1);
+	if (*s++ == '-')
+		sign = (-1);
 	while (*s != '.' && *s)
 		integer = (integer * 10) + (*s++ - '0');
 	if (*s == '.')
